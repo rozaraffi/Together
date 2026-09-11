@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Konsolidasi Kekayaan Bersama</title>
+    <!-- Font Google Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.65);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            
+            /* Suami Theme */
+            --suami-accent: #38bdf8;
+            --suami-gradient: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%);
+            --suami-glow: rgba(56, 189, 248, 0.25);
+            
+            /* Istri Theme */
+            --istri-accent: #f43f5e;
+            --istri-gradient: linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%);
+            --istri-glow: rgba(244, 63, 94, 0.25);
+
+            /* Bersama Theme */
+            --bersama-accent: #10b981;
+            --bersama-glow: rgba(16, 185, 129, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(244, 63, 94, 0.12) 0px, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .header {
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+
+        /* Card Total Bersama */
+        .total-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 24px;
+            padding: 22px 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 15px 35px -10px var(--bersama-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .total-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .total-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--bersama-accent);
+            margin-bottom: 6px;
+        }
+
+        .total-amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        /* Bar Persentase */
+        .progress-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            height: 10px;
+            overflow: hidden;
+            display: flex;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .progress-bar {
+            height: 100%;
+            transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .progress-suami {
+            background: linear-gradient(90deg, #0284c7, var(--suami-accent));
+            width: 50%;
+        }
+
+        .progress-istri {
+            background: linear-gradient(90deg, var(--istri-accent), #e11d48);
+            width: 50%;
+        }
+
+        .percentage-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .pct-suami { color: var(--suami-accent); }
+        .pct-istri { color: var(--istri-accent); }
+
+        /* Grid Flex Kiri-Kanan */
+        .card-grid {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 16px;
+            padding: 2px;
+        }
+
+        .card {
+            flex: 1;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 20px 16px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .card-suami::before { background: var(--suami-gradient); }
+        .card-istri::before { background: var(--istri-gradient); }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .card-suami:hover { box-shadow: 0 20px 40px -15px var(--suami-glow); }
+        .card-istri:hover { box-shadow: 0 20px 40px -15px var(--istri-glow); }
+        .card:hover::before { opacity: 1; }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .icon-wrapper {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-suami .icon-wrapper {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            color: var(--suami-accent);
+        }
+
+        .card-istri .icon-wrapper {
+            background: rgba(244, 63, 94, 0.1);
+            border: 1px solid rgba(244, 63, 94, 0.25);
+            color: var(--istri-accent);
+        }
+
+        .card:hover .icon-wrapper {
+            transform: scale(1.12) rotate(4deg);
+        }
+
+        .icon-wrapper svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+            letter-spacing: -0.3px;
+        }
+
+        .card-subtitle {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+        }
+
+        .btn-action {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-suami .btn-action {
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+        }
+
+        .card-istri .btn-action {
+            background: rgba(244, 63, 94, 0.12);
+            border: 1px solid rgba(244, 63, 94, 0.25);
+        }
+
+        .card-suami:hover .btn-action {
+            background: var(--suami-accent);
+            border-color: var(--suami-accent);
+        }
+
+        .card-istri:hover .btn-action {
+            background: var(--istri-accent);
+            border-color: var(--istri-accent);
+        }
+
+        .btn-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+            opacity: 0.8;
+            transition: color 0.3s ease;
+        }
+
+        .card-suami .btn-label { color: var(--suami-accent); }
+        .card-istri .btn-label { color: var(--istri-accent); }
+
+        .card-suami:hover .btn-label { color: #0f172a; }
+        .card-istri:hover .btn-label { color: #ffffff; }
+
+        .amount-display {
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: -0.2px;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        .card-suami .amount-display { color: #ffffff; }
+        .card-istri .amount-display { color: #ffffff; }
+
+        .card-suami:hover .amount-display { color: #0f172a; }
+        .card-istri:hover .amount-display { color: #ffffff; }
+
+        @keyframes pulseUpdate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.12); filter: brightness(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse-anim {
+            animation: pulseUpdate 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .toast-container {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            padding: 12px 18px;
+            border-radius: 14px;
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(120%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .toast-suami .toast-icon { background: var(--suami-accent); box-shadow: 0 0 10px var(--suami-accent); }
+        .toast-istri .toast-icon { background: var(--istri-accent); box-shadow: 0 0 10px var(--istri-accent); }
+        .toast-bersama .toast-icon { background: var(--bersama-accent); box-shadow: 0 0 10px var(--bersama-accent); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 { font-size: 1.7rem; }
+            .total-amount { font-size: 1.6rem; }
+            .card-grid { gap: 10px; }
+            .card { padding: 16px 10px; }
+            .card-title { font-size: 1rem; }
+            .amount-display { font-size: 0.88rem; }
+            .btn-action { padding: 8px 6px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Selamat Datang</h1>
+            <p>Portal kekayaan bersih & total kekayaan bersama</p>
+        </div>
+
+        <div class="total-card">
+            <div class="total-label">Total Kekayaan Bersama (Nett)</div>
+            <div class="total-amount" id="nominalBersama">Rp 0</div>
+            
+            <div class="progress-container">
+                <div class="progress-bar progress-suami" id="barSuami"></div>
+                <div class="progress-bar progress-istri" id="barIstri"></div>
+            </div>
+
+            <div class="percentage-labels">
+                <span class="pct-suami">Suami: <span id="pctSuamiVal">0%</span></span>
+                <span class="pct-istri">Istri: <span id="pctIstriVal">0%</span></span>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            
+            <a href="suami.html" class="card card-suami" onclick="handleCardClick('Suami', event)">
+                <div class="card-content">
+                    <div class="icon-wrapper">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                    </div>
+                    <div class="card-title">Suami</div>
+                    <div class="card-subtitle">Klik untuk ke portal</div>
+                    
+                    <div class="btn-action">
+                        <span class="btn-label">Total Kekayaan Riil</span>
+                        <span class="amount-display" id="nominalSuami">Rp 0</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="istri.html" class="card card-istri" onclick="handleCardClick('Istri', event)">
+                <div class="card-content">
+                    <div class="icon-wrapper">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                    <div class="card-title">Istri</div>
+                    <div class="card-subtitle">Klik untuk ke portal</div>
+                    
+                    <div class="btn-action">
+                        <span class="btn-label">Total Kekayaan Riil</span>
+                        <span class="amount-display" id="nominalIstri">Rp 0</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    <script>
+        // Mengambil variabel totalKekayaanRiil dari localStorage masing-masing (atau fallback ke kalkulasi transaksi)
+        function getRealNetWorth(role) {
+            // 1. Cek kunci spesifik totalKekayaanRiil
+            const explicitVal = localStorage.getItem(`totalKekayaanRiil_${role}`) || localStorage.getItem(`totalKekayaanRiil`);
+            if (explicitVal !== null && role === 'suami') return parseFloat(explicitVal) || 0;
+
+            // 2. Cek kunci networth / totalKekayaanRiil spesifik
+            const directVal = localStorage.getItem(`networth_${role}`) || localStorage.getItem(`total_kekayaan_riil_${role}`);
+            if (directVal !== null) return parseFloat(directVal) || 0;
+
+            // 3. Fallback: Hitung manual dari riwayat transaksi jika tersimpan dalam struktur dashboard
+            const storageKey = `financial_dashboard_transactions_${role}`;
+            const rawData = localStorage.getItem(storageKey) || localStorage.getItem('transactions');
+            
+            if (rawData) {
+                try {
+                    const transactions = JSON.parse(rawData);
+                    let balances = {
+                        cash: 0, bca: 0, jago: 0, dana: 0, dana_bisnis: 0,
+                        shopeepay: 0, gopay: 0, ovo: 0, ibu: 0, utang: 0
+                    };
+
+                    transactions.forEach(tx => {
+                        const amount = parseFloat(tx.amount) || 0;
+                        const admin = parseFloat(tx.adminFee) || 0;
+
+                        if (tx.type === 'income') {
+                            if (balances.hasOwnProperty(tx.account)) balances[tx.account] += amount;
+                        } else if (tx.type === 'expense') {
+                            if (balances.hasOwnProperty(tx.account)) balances[tx.account] -= amount;
+                        } else if (tx.type === 'transfer') {
+                            if (balances.hasOwnProperty(tx.fromAccount)) balances[tx.fromAccount] -= amount;
+                            if (balances.hasOwnProperty(tx.toAccount)) balances[tx.toAccount] += amount;
+                            
+                            if (admin > 0) {
+                                const feeTarget = tx.adminTarget || 'from';
+                                const feeAccount = feeTarget === 'from' ? tx.fromAccount : tx.toAccount;
+                                if (balances.hasOwnProperty(feeAccount)) balances[feeAccount] -= admin;
+                            }
+                        }
+                    });
+
+                    let totalAset = 0;
+                    for (const [key, val] of Object.entries(balances)) {
+                        if (key !== 'ibu' && key !== 'utang') {
+                            totalAset += val;
+                        }
+                    }
+
+                    const totalUtang = Math.abs(balances.utang || 0);
+                    return totalAset - totalUtang;
+                } catch (e) {
+                    console.error("Gagal mengkalkulasi data transaksi:", e);
+                }
+            }
+
+            // Fallback dasar terakhir
+            const totalAset = parseFloat(localStorage.getItem(`total_aset_${role}`)) || parseFloat(localStorage.getItem(`saldo_${role}`)) || 0;
+            const totalUtang = parseFloat(localStorage.getItem(`total_utang_${role}`)) || 0;
+            
+            return totalAset - totalUtang;
+        }
+
+        let currentValues = {
+            suami: getRealNetWorth('suami'),
+            istri: getRealNetWorth('istri')
+        };
+
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                maximumFractionDigits: 0
+            }).format(number);
+        }
+
+        function animateValue(elementId, start, end, duration, type, triggerNotification = false) {
+            const obj = document.getElementById(elementId);
+            const range = end - start;
+
+            if (range === 0) {
+                obj.innerText = formatRupiah(end);
+                return;
+            }
+
+            let startTime = null;
+
+            obj.classList.remove('pulse-anim');
+            void obj.offsetWidth;
+            obj.classList.add('pulse-anim');
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const currentVal = Math.floor(start + (range * easeProgress));
+                
+                obj.innerText = formatRupiah(currentVal);
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    obj.innerText = formatRupiah(end);
+                }
+            }
+
+            window.requestAnimationFrame(step);
+
+            if (triggerNotification) {
+                const label = type === 'suami' ? 'Suami' : type === 'istri' ? 'Istri' : 'Bersama';
+                showToast(type, `Total Kekayaan Riil ${label} diperbarui!`);
+            }
+        }
+
+        function updatePercentages(suamiVal, istriVal) {
+            const total = suamiVal + istriVal;
+            let pctSuami = 0;
+            let pctIstri = 0;
+
+            if (total > 0) {
+                pctSuami = Math.max(0, ((suamiVal / total) * 100)).toFixed(1);
+                pctIstri = Math.max(0, (100 - pctSuami)).toFixed(1);
+            }
+
+            document.getElementById('pctSuamiVal').innerText = `${pctSuami}%`;
+            document.getElementById('pctIstriVal').innerText = `${pctIstri}%`;
+
+            document.getElementById('barSuami').style.width = `${pctSuami}%`;
+            document.getElementById('barIstri').style.width = `${pctIstri}%`;
+        }
+
+        function showToast(type, message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `<div class="toast-icon"></div><span>${message}</span>`;
+            
+            container.appendChild(toast);
+
+            setTimeout(() => toast.classList.add('show'), 50);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 3500);
+        }
+
+        function handleCardClick(nama, event) {
+            showToast(nama.toLowerCase(), `Membuka halaman ${nama}...`);
+        }
+
+        function initData() {
+            currentValues.suami = getRealNetWorth('suami');
+            currentValues.istri = getRealNetWorth('istri');
+
+            const totalAwal = currentValues.suami + currentValues.istri;
+
+            animateValue('nominalSuami', 0, currentValues.suami, 1000, 'suami', false);
+            animateValue('nominalIstri', 0, currentValues.istri, 1000, 'istri', false);
+            animateValue('nominalBersama', 0, totalAwal, 1200, 'bersama', false);
+
+            updatePercentages(currentValues.suami, currentValues.istri);
+        }
+
+        // Realtime Listener: Memantau perubahan totalKekayaanRiil dan kunci terkait secara otomatis
+        window.addEventListener('storage', function(e) {
+            const trackedKeys = [
+                'totalKekayaanRiil',
+                'totalKekayaanRiil_suami', 'totalKekayaanRiil_istri',
+                'total_kekayaan_riil_suami', 'total_kekayaan_riil_istri',
+                'networth_suami', 'networth_istri',
+                'saldo_suami', 'saldo_istri',
+                'total_aset_suami', 'total_aset_istri',
+                'total_utang_suami', 'total_utang_istri',
+                'financial_dashboard_transactions_suami',
+                'financial_dashboard_transactions_istri',
+                'financial_dashboard_transactions',
+                'transactions'
+            ];
+
+            if (trackedKeys.includes(e.key)) {
+                const oldTotal = currentValues.suami + currentValues.istri;
+
+                const newSuami = getRealNetWorth('suami');
+                const newIstri = getRealNetWorth('istri');
+
+                if (newSuami !== currentValues.suami) {
+                    animateValue('nominalSuami', currentValues.suami, newSuami, 800, 'suami', true);
+                    currentValues.suami = newSuami;
+                }
+
+                if (newIstri !== currentValues.istri) {
+                    animateValue('nominalIstri', currentValues.istri, newIstri, 800, 'istri', true);
+                    currentValues.istri = newIstri;
+                }
+
+                const newTotal = currentValues.suami + currentValues.istri;
+
+                animateValue('nominalBersama', oldTotal, newTotal, 900, 'bersama', false);
+                updatePercentages(currentValues.suami, currentValues.istri);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', initData);
+    </script>
+</body>
+</html>
