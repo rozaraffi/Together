@@ -631,11 +631,11 @@
       const totalKekayaanBersih = totalAsetLancar;
       document.getElementById('displayTotalKekayaan').textContent = formatRupiahDisplay(totalKekayaanBersih);
       
-      const totalKekayaanRiil = totalKekayaanBersih - saldohutang;
-      document.getElementById('displayTotalKekayaanhutang').textContent = formatRupiahDisplay(totalKekayaanRiil);
+      const totalKekayaanRiilIstri = totalKekayaanBersih - saldohutang;
+      document.getElementById('displayTotalKekayaanhutang').textContent = formatRupiahDisplay(totalKekayaanRiilIstri);
 
       // SIMPAN TOTAL KEKAYAAN RIIL KE LOCALSTORAGE
-      localStorage.setItem('totalKekayaanRiil', totalKekayaanRiil);
+      localStorage.setItem('totalKekayaanRiilIstri', totalKekayaanRiilIstri);
 
       renderCustomCategorySummary(bulan, tahun);
       renderBudgetSummary(bulan, tahun);
