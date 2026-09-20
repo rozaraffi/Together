@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Laporan Rekening shopeepay1 - Financial Dashboard</title>
+  <title>Laporan Rekening ovo1 - Financial Dashboard</title>
   
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -241,10 +241,10 @@
             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-pink-100 text-pink-700 border border-pink-200">
               <i class="fa-solid fa-sync fa-spin text-[10px] mr-1.5"></i> Live Sync
             </span>
-            <span class="text-xs text-pink-400 font-medium">shopeepay1 Account Ledger</span>
+            <span class="text-xs text-pink-400 font-medium">ovo1 Account Ledger</span>
           </div>
           <h1 class="text-2xl md:text-3xl font-extrabold text-[#831843] tracking-tight mt-0.5">
-            Laporan Rekening: <span id="rekeningNama" class="text-pink-600">shopeepay1</span>
+            Laporan Rekening: <span id="rekeningNama" class="text-pink-600">ovo1</span>
           </h1>
         </div>
       </div>
@@ -265,7 +265,7 @@
         <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-pink-400/15 rounded-full blur-2xl animate-glow"></div>
         <div>
           <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-bold uppercase tracking-wider text-pink-400">Total Saldo shopeepay1</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-pink-400">Total Saldo ovo1</span>
             <span class="w-10 h-10 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center text-lg smooth-transition group-hover:scale-110">
               <i class="fa-solid fa-building-columns"></i>
             </span>
@@ -283,7 +283,7 @@
       <!-- Form Input Transaksi -->
       <div class="glass-card rounded-3xl p-6 shadow-xl shadow-pink-200/40 hover:shadow-2xl scroll-mt-8 relative z-20" id="formInputCard">
         <h2 class="text-base font-bold text-[#831843] mb-4 flex items-center gap-2">
-          <i class="fa-solid fa-circle-plus text-pink-500"></i> <span id="formTitleText">Input Transaksi shopeepay1</span>
+          <i class="fa-solid fa-circle-plus text-pink-500"></i> <span id="formTitleText">Input Transaksi ovo1</span>
         </h2>
         <div class="space-y-3">
           <div class="grid grid-cols-2 gap-3">
@@ -367,7 +367,7 @@
     <div class="glass-card rounded-3xl p-6 md:p-8 shadow-xl shadow-pink-200/40 relative z-10">
       <div class="flex items-center justify-between mb-6">
         <h2 class="text-lg font-bold text-[#831843] flex items-center gap-2">
-          <i class="fa-solid fa-chart-pie text-pink-500"></i> Ringkasan Visual Transaksi shopeepay1
+          <i class="fa-solid fa-chart-pie text-pink-500"></i> Ringkasan Visual Transaksi ovo1
         </h2>
         <span class="text-xs text-pink-400 font-medium">Analisis Perbandingan & Akun</span>
       </div>
@@ -393,7 +393,7 @@
         <div class="w-16 h-16 mx-auto mb-3 text-pink-300 flex items-center justify-center rounded-2xl bg-pink-50">
           <i class="fa-solid fa-folder-open text-2xl"></i>
         </div>
-        <p class="text-pink-400 font-medium text-sm">Tidak ada transaksi shopeepay1 ditemukan untuk periode ini.</p>
+        <p class="text-pink-400 font-medium text-sm">Tidak ada transaksi ovo1 ditemukan untuk periode ini.</p>
       </div>
     </div>
 
@@ -429,7 +429,7 @@
       </div>
       <div>
         <h3 class="text-base font-extrabold text-[#831843]">Hapus Transaksi?</h3>
-        <p class="text-xs text-pink-500 mt-1 leading-relaxed">Tindakan ini tidak dapat dibatalkan. Transaksi akan dihapus permanen dari laporan shopeepay1.</p>
+        <p class="text-xs text-pink-500 mt-1 leading-relaxed">Tindakan ini tidak dapat dibatalkan. Transaksi akan dihapus permanen dari laporan ovo1.</p>
       </div>
       <div class="grid grid-cols-2 gap-3 pt-2">
         <button onclick="closeDeleteModal()" class="btn-smooth py-2 px-4 rounded-xl border border-pink-200 text-pink-700 hover:bg-pink-50 font-semibold text-xs">
@@ -443,7 +443,7 @@
   </div>
 
   <script>
-    const rekeningKey = 'transaksi_rekening_shopeepay1';
+    const rekeningKey = 'transaksi_rekening_ovo1';
     const rekeningNamaEl = document.getElementById('rekeningNama');
     const saldoRekeningEl = document.getElementById('saldoRekening');
     const bukuBesarContainer = document.getElementById('bukuBesar');
@@ -756,14 +756,14 @@
       selectOption('wrapper-bulan', month.toString(), months[month - 1]);
       selectOption('wrapper-tahun', year.toString(), year.toString());
 
-      showToast("Transaksi shopeepay1 berhasil disimpan 🔥", "success");
+      showToast("Transaksi ovo1 berhasil disimpan 🔥", "success");
       renderAllFiltered();
 
       // Reset Form
       document.getElementById('akun').value = '';
       nominalInputFormattedEl.value = '';
       document.getElementById('keterangan').value = '';
-      document.getElementById('formTitleText').textContent = 'Input Transaksi shopeepay1';
+      document.getElementById('formTitleText').textContent = 'Input Transaksi ovo1';
       document.getElementById('btnSubmitText').textContent = 'Simpan Transaksi';
     });
 
@@ -814,7 +814,7 @@
       document.getElementById('keterangan').value = t.ket || '';
       
       // Update label form
-      document.getElementById('formTitleText').textContent = 'Edit Transaksi shopeepay1';
+      document.getElementById('formTitleText').textContent = 'Edit Transaksi ovo1';
       document.getElementById('btnSubmitText').textContent = 'Perbarui Transaksi';
 
       transaksi.splice(originalIndex, 1);
@@ -1066,7 +1066,7 @@
     async function downloadPDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
-      const rekeningName = 'shopeepay1';
+      const rekeningName = 'ovo1';
       const saldoCurrentOverall = saldoRekeningEl.textContent;
       const filteredTransactions = transaksi.filter(t => 
         t.year === currentFilterYear && t.month === currentFilterMonth

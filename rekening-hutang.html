@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Laporan Rekening utang - Financial Dashboard</title>
+  <title>Laporan Rekening hutang - Financial Dashboard</title>
   
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -23,8 +23,8 @@
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background: radial-gradient(circle at top left, #e0f2fe, #f8fafc 50%, #f1f5f9);
-      color: #0b1329;
+      background: radial-gradient(circle at top left, #fce7f3, #fff1f2 50%, #fff5f5);
+      color: #4c1d95;
     }
     
     ::-webkit-scrollbar {
@@ -32,14 +32,14 @@
       height: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #f1f5f9;
+      background: #fff1f2;
     }
     ::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
+      background: #fbcfe8;
       border-radius: 10px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #94a3b8;
+      background: #f472b6;
     }
 
     .smooth-transition {
@@ -48,10 +48,10 @@
     }
 
     .glass-card {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(226, 232, 240, 0.8);
+      border: 1px solid rgba(251, 207, 232, 0.8);
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: transform, box-shadow;
     }
@@ -115,21 +115,21 @@
       transform: translateX(2px);
     }
 
-    /* Flatpickr Custom Styling */
+    /* Flatpickr Custom Styling Pink */
     .flatpickr-calendar {
-      background: rgba(255, 255, 255, 0.95) !important;
+      background: rgba(255, 255, 255, 0.98) !important;
       backdrop-filter: blur(16px) !important;
       -webkit-backdrop-filter: blur(16px) !important;
-      border: 1px solid rgba(226, 232, 240, 0.9) !important;
+      border: 1px solid rgba(251, 207, 232, 0.9) !important;
       border-radius: 20px !important;
-      box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.15) !important;
+      box-shadow: 0 20px 30px -10px rgba(244, 63, 94, 0.15) !important;
       font-family: 'Plus Jakarta Sans', sans-serif !important;
       padding: 12px !important;
       z-index: 9999 !important;
     }
     .flatpickr-day.selected, .flatpickr-day.selected:hover {
-      background: #2563eb !important;
-      border-color: #2563eb !important;
+      background: #ec4899 !important;
+      border-color: #ec4899 !important;
     }
 
     /* Custom Dropdown Styling & Z-Index Layering */
@@ -145,21 +145,21 @@
       padding: 10px 14px;
       font-size: 0.875rem;
       font-weight: 500;
-      color: #1e293b;
-      background-color: rgba(248, 250, 252, 0.7);
-      border: 1px solid #e2e8f0;
+      color: #831843;
+      background-color: rgba(255, 241, 242, 0.6);
+      border: 1px solid #fbcfe8;
       border-radius: 12px;
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .custom-select-trigger:hover {
       background-color: #ffffff;
-      border-color: #cbd5e1;
+      border-color: #f472b6;
     }
     .custom-select-wrapper.open .custom-select-trigger {
       background-color: #ffffff;
-      border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+      border-color: #ec4899;
+      box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.18);
     }
     .custom-select-trigger i {
       transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -177,9 +177,9 @@
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(226, 232, 240, 0.9);
+      border: 1px solid rgba(251, 207, 232, 0.9);
       border-radius: 16px;
-      box-shadow: 0 20px 30px -5px rgba(15, 23, 42, 0.18);
+      box-shadow: 0 20px 30px -5px rgba(244, 63, 94, 0.18);
       max-height: 220px;
       overflow-y: auto;
       opacity: 0;
@@ -197,7 +197,7 @@
       padding: 8px 12px;
       font-size: 0.875rem;
       font-weight: 500;
-      color: #334155;
+      color: #9f1239;
       border-radius: 10px;
       cursor: pointer;
       transition: all 0.15s ease;
@@ -206,11 +206,11 @@
       justify-content: space-between;
     }
     .custom-option:hover {
-      background-color: #eff6ff;
-      color: #2563eb;
+      background-color: #fce7f3;
+      color: #ec4899;
     }
     .custom-option.selected {
-      background-color: #2563eb;
+      background-color: #ec4899;
       color: #ffffff;
       font-weight: 600;
     }
@@ -220,37 +220,37 @@
     }
 
     @keyframes highlightPulse {
-      0% { box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.4); border-color: #2563eb; }
-      50% { box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.2); border-color: #2563eb; }
+      0% { box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.4); border-color: #ec4899; }
+      50% { box-shadow: 0 0 0 6px rgba(236, 72, 153, 0.2); border-color: #ec4899; }
       100% { box-shadow: none; }
     }
   </style>
 </head>
-<body class="min-h-screen p-4 md:p-8 lg:p-10 antialiased selection:bg-blue-600 selection:text-white">
+<body class="min-h-screen p-4 md:p-8 lg:p-10 antialiased selection:bg-pink-500 selection:text-white">
   
   <div class="max-w-7xl mx-auto space-y-8 animate-fade-in-up">
     
     <!-- Header Utama -->
-    <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-200/80">
+    <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-pink-200/80">
       <div class="flex items-center gap-4">
-        <a href="istri.html" class="btn-smooth w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 shadow-sm">
+        <a href="istri.html" class="btn-smooth w-10 h-10 rounded-xl bg-white border border-pink-200 flex items-center justify-center text-pink-600 hover:text-pink-700 hover:border-pink-300 hover:bg-pink-50 shadow-sm">
           <i class="fa-solid fa-arrow-left"></i>
         </a>
         <div>
           <div class="flex items-center gap-2">
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-pink-100 text-pink-700 border border-pink-200">
               <i class="fa-solid fa-sync fa-spin text-[10px] mr-1.5"></i> Live Sync
             </span>
-            <span class="text-xs text-slate-400 font-medium">utang Account Ledger</span>
+            <span class="text-xs text-pink-400 font-medium">hutang Account Ledger</span>
           </div>
-          <h1 class="text-2xl md:text-3xl font-extrabold text-[#0b1329] tracking-tight mt-0.5">
-            Laporan Rekening: <span id="rekeningNama" class="text-blue-600">Utang</span>
+          <h1 class="text-2xl md:text-3xl font-extrabold text-[#831843] tracking-tight mt-0.5">
+            Laporan Rekening: <span id="rekeningNama" class="text-pink-600">hutang</span>
           </h1>
         </div>
       </div>
 
       <div class="flex items-center gap-2">
-        <button onclick="toggleVisibility()" id="toggleVisBtn" class="btn-smooth px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-slate-300 text-slate-700 font-medium text-xs shadow-sm flex items-center gap-2">
+        <button onclick="toggleVisibility()" id="toggleVisBtn" class="btn-smooth px-3.5 py-2 rounded-xl bg-white border border-pink-200 hover:border-pink-300 text-pink-700 font-medium text-xs shadow-sm flex items-center gap-2">
           <i class="fa-solid fa-eye" id="visIcon"></i>
           <span id="visText">Sembunyikan Saldo</span>
         </button>
@@ -261,18 +261,18 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-30">
       
       <!-- Card Saldo Utama -->
-      <div class="glass-card rounded-3xl p-7 shadow-xl shadow-slate-200/50 flex flex-col justify-between relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-500/10 z-10">
-        <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl animate-glow"></div>
+      <div class="glass-card rounded-3xl p-7 shadow-xl shadow-pink-200/40 flex flex-col justify-between relative overflow-hidden group hover:shadow-2xl hover:shadow-pink-500/10 z-10">
+        <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-pink-400/15 rounded-full blur-2xl animate-glow"></div>
         <div>
           <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Saldo utang</span>
-            <span class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg smooth-transition group-hover:scale-110">
+            <span class="text-xs font-bold uppercase tracking-wider text-pink-400">Total Saldo hutang</span>
+            <span class="w-10 h-10 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center text-lg smooth-transition group-hover:scale-110">
               <i class="fa-solid fa-building-columns"></i>
             </span>
           </div>
-          <p class="text-3xl lg:text-4xl font-extrabold text-[#0b1329] tracking-tight transition-all duration-300" id="saldoRekening">Rp 0</p>
+          <p class="text-3xl lg:text-4xl font-extrabold text-[#831843] tracking-tight transition-all duration-300" id="saldoRekening">Rp 0</p>
         </div>
-        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+        <div class="mt-6 pt-4 border-t border-pink-100 flex items-center justify-between text-xs text-pink-500">
           <span>Status Rekening</span>
           <span class="flex items-center gap-1.5 text-emerald-600 font-semibold">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Aktif
@@ -281,24 +281,24 @@
       </div>
 
       <!-- Form Input Transaksi -->
-      <div class="glass-card rounded-3xl p-6 shadow-xl shadow-slate-200/50 hover:shadow-2xl scroll-mt-8 relative z-20" id="formInputCard">
-        <h2 class="text-base font-bold text-[#0b1329] mb-4 flex items-center gap-2">
-          <i class="fa-solid fa-circle-plus text-blue-600"></i> <span id="formTitleText">Input Transaksi utang</span>
+      <div class="glass-card rounded-3xl p-6 shadow-xl shadow-pink-200/40 hover:shadow-2xl scroll-mt-8 relative z-20" id="formInputCard">
+        <h2 class="text-base font-bold text-[#831843] mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-circle-plus text-pink-500"></i> <span id="formTitleText">Input Transaksi hutang</span>
         </h2>
         <div class="space-y-3">
           <div class="grid grid-cols-2 gap-3">
             
             <div class="relative">
-              <input type="text" id="tanggal" placeholder="Pilih Tanggal" class="w-full bg-slate-50/60 border border-slate-200 px-3.5 py-2 rounded-xl text-xs font-medium focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none smooth-transition cursor-pointer" />
-              <i class="fa-regular fa-calendar absolute right-3.5 top-2.5 text-slate-400 pointer-events-none text-xs"></i>
+              <input type="text" id="tanggal" placeholder="Pilih Tanggal" class="w-full bg-pink-50/40 border border-pink-200 px-3.5 py-2 rounded-xl text-xs font-medium text-pink-900 focus:ring-2 focus:ring-pink-400 focus:bg-white focus:outline-none smooth-transition cursor-pointer" />
+              <i class="fa-regular fa-calendar absolute right-3.5 top-2.5 text-pink-400 pointer-events-none text-xs"></i>
             </div>
 
-            <!-- Perbaikan Dropdown Jenis Pemasukan / Pengeluaran -->
+            <!-- Dropdown Jenis Pemasukan / Pengeluaran -->
             <div class="custom-select-wrapper z-50" id="wrapper-jenis">
               <input type="hidden" id="jenis" value="pemasukan">
               <div class="custom-select-trigger !py-2 !text-xs" onclick="toggleDropdown('wrapper-jenis', event)">
                 <span id="selected-jenis"><i class="fa-solid fa-circle-down text-emerald-500 mr-1.5"></i> Pemasukan</span>
-                <i class="fa-solid fa-chevron-down text-slate-400 text-[10px]"></i>
+                <i class="fa-solid fa-chevron-down text-pink-400 text-[10px]"></i>
               </div>
               <div class="custom-options">
                 <div class="custom-option selected !text-xs" data-value="pemasukan" onclick="selectJenisOption('pemasukan', event)">
@@ -312,21 +312,21 @@
 
           </div>
 
-          <input type="text" id="akun" placeholder="Nama Akun / Sumber (misal: Transfer Customer)" class="w-full bg-slate-50/50 border border-slate-200 px-3.5 py-2 rounded-xl text-xs font-medium focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none smooth-transition" />
-          <input type="text" id="nominalInputFormatted" placeholder="Nominal (contoh: 100.000)" class="w-full bg-slate-50/50 border border-slate-200 px-3.5 py-2 rounded-xl text-xs font-semibold focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none smooth-transition text-slate-800" />
-          <input type="text" id="keterangan" placeholder="Keterangan (opsional)" class="w-full bg-slate-50/50 border border-slate-200 px-3.5 py-2 rounded-xl text-xs font-medium focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none smooth-transition" />
+          <input type="text" id="akun" placeholder="Nama Akun / Sumber (misal: Transfer Customer)" class="w-full bg-pink-50/30 border border-pink-200 px-3.5 py-2 rounded-xl text-xs font-medium text-pink-900 placeholder:text-pink-300 focus:ring-2 focus:ring-pink-400 focus:bg-white focus:outline-none smooth-transition" />
+          <input type="text" id="nominalInputFormatted" placeholder="Nominal (contoh: 100.000)" class="w-full bg-pink-50/30 border border-pink-200 px-3.5 py-2 rounded-xl text-xs font-semibold text-pink-900 placeholder:text-pink-300 focus:ring-2 focus:ring-pink-400 focus:bg-white focus:outline-none smooth-transition" />
+          <input type="text" id="keterangan" placeholder="Keterangan (opsional)" class="w-full bg-pink-50/30 border border-pink-200 px-3.5 py-2 rounded-xl text-xs font-medium text-pink-900 placeholder:text-pink-300 focus:ring-2 focus:ring-pink-400 focus:bg-white focus:outline-none smooth-transition" />
           
-          <button id="tambahBtn" class="btn-smooth w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-xl shadow-lg shadow-blue-600/20 text-xs flex items-center justify-center gap-2">
+          <button id="tambahBtn" class="btn-smooth w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2.5 rounded-xl shadow-lg shadow-pink-500/25 text-xs flex items-center justify-center gap-2">
             <i class="fa-solid fa-floppy-disk"></i> <span id="btnSubmitText">Simpan Transaksi</span>
           </button>
         </div>
       </div>
 
       <!-- Filter Periode Laporan -->
-      <div class="glass-card rounded-3xl p-6 shadow-xl shadow-slate-200/50 hover:shadow-2xl flex flex-col justify-between relative z-20">
+      <div class="glass-card rounded-3xl p-6 shadow-xl shadow-pink-200/40 hover:shadow-2xl flex flex-col justify-between relative z-20">
         <div>
-          <h2 class="text-base font-bold text-[#0b1329] mb-4 flex items-center gap-2">
-            <i class="fa-solid fa-filter text-blue-600"></i> Filter Periode Laporan
+          <h2 class="text-base font-bold text-[#831843] mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-filter text-pink-500"></i> Filter Periode Laporan
           </h2>
           <div class="space-y-3">
             
@@ -334,7 +334,7 @@
               <input type="hidden" id="bulanFilter" value="1">
               <div class="custom-select-trigger !py-2 !text-xs" onclick="toggleDropdown('wrapper-bulan', event)">
                 <span id="selected-bulan">Januari</span>
-                <i class="fa-solid fa-chevron-down text-slate-400 text-[10px]"></i>
+                <i class="fa-solid fa-chevron-down text-pink-400 text-[10px]"></i>
               </div>
               <div class="custom-options" id="options-bulan"></div>
             </div>
@@ -343,7 +343,7 @@
               <input type="hidden" id="tahunFilter" value="2026">
               <div class="custom-select-trigger !py-2 !text-xs" onclick="toggleDropdown('wrapper-tahun', event)">
                 <span id="selected-tahun">2026</span>
-                <i class="fa-solid fa-chevron-down text-slate-400 text-[10px]"></i>
+                <i class="fa-solid fa-chevron-down text-pink-400 text-[10px]"></i>
               </div>
               <div class="custom-options" id="options-tahun"></div>
             </div>
@@ -352,10 +352,10 @@
         </div>
         
         <div class="grid grid-cols-2 gap-3 mt-4">
-          <button id="filterBtn" class="btn-smooth bg-[#1e293b] hover:bg-[#0b1329] text-white font-semibold py-2.5 rounded-xl shadow-md text-xs flex items-center justify-center gap-1.5">
+          <button id="filterBtn" class="btn-smooth bg-[#831843] hover:bg-[#500724] text-white font-semibold py-2.5 rounded-xl shadow-md text-xs flex items-center justify-center gap-1.5">
             <i class="fa-solid fa-magnifying-glass"></i> Tampilkan
           </button>
-          <button onclick="downloadPDF()" class="btn-smooth bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-xl shadow-md shadow-blue-600/20 text-xs flex items-center justify-center gap-1.5">
+          <button onclick="downloadPDF()" class="btn-smooth bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2.5 rounded-xl shadow-md shadow-pink-500/25 text-xs flex items-center justify-center gap-1.5">
             <i class="fa-solid fa-file-pdf"></i> Cetak PDF
           </button>
         </div>
@@ -364,12 +364,12 @@
     </div>
 
     <!-- Ringkasan Visual / Chart Section -->
-    <div class="glass-card rounded-3xl p-6 md:p-8 shadow-xl shadow-slate-200/50 relative z-10">
+    <div class="glass-card rounded-3xl p-6 md:p-8 shadow-xl shadow-pink-200/40 relative z-10">
       <div class="flex items-center justify-between mb-6">
-        <h2 class="text-lg font-bold text-[#0b1329] flex items-center gap-2">
-          <i class="fa-solid fa-chart-pie text-blue-600"></i> Ringkasan Visual Transaksi utang
+        <h2 class="text-lg font-bold text-[#831843] flex items-center gap-2">
+          <i class="fa-solid fa-chart-pie text-pink-500"></i> Ringkasan Visual Transaksi hutang
         </h2>
-        <span class="text-xs text-slate-400 font-medium">Analisis Perbandingan & Akun</span>
+        <span class="text-xs text-pink-400 font-medium">Analisis Perbandingan & Akun</span>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         <div class="relative h-64 w-full flex items-center justify-center p-2">
@@ -382,36 +382,36 @@
     </div>
 
     <!-- Buku Besar Section -->
-    <div class="glass-card rounded-3xl p-6 md:p-8 shadow-xl shadow-slate-200/50 relative z-10">
+    <div class="glass-card rounded-3xl p-6 md:p-8 shadow-xl shadow-pink-200/40 relative z-10">
       <div class="flex items-center justify-between mb-6">
-        <h2 class="text-lg font-bold text-[#0b1329] flex items-center gap-2">
-          <i class="fa-solid fa-book text-blue-600"></i> Buku Besar Detail Transaksi
+        <h2 class="text-lg font-bold text-[#831843] flex items-center gap-2">
+          <i class="fa-solid fa-book text-pink-500"></i> Buku Besar Detail Transaksi
         </h2>
       </div>
       <div id="bukuBesar" class="space-y-6"></div>
       <div id="noTransactionsMessage" class="py-12 text-center hidden">
-        <div class="w-16 h-16 mx-auto mb-3 text-slate-300 flex items-center justify-center rounded-2xl bg-slate-100">
+        <div class="w-16 h-16 mx-auto mb-3 text-pink-300 flex items-center justify-center rounded-2xl bg-pink-50">
           <i class="fa-solid fa-folder-open text-2xl"></i>
         </div>
-        <p class="text-slate-500 font-medium text-sm">Tidak ada transaksi utang ditemukan untuk periode ini.</p>
+        <p class="text-pink-400 font-medium text-sm">Tidak ada transaksi hutang ditemukan untuk periode ini.</p>
       </div>
     </div>
 
     <!-- Neraca Saldo Section -->
-    <div class="glass-card rounded-3xl p-6 md:p-8 shadow-xl shadow-slate-200/50 relative z-10" id="neracaSection">
-      <h2 class="text-lg font-bold text-[#0b1329] mb-6 flex items-center gap-2">
-        <i class="fa-solid fa-scale-balanced text-blue-600"></i> Neraca Saldo Periode
+    <div class="glass-card rounded-3xl p-6 md:p-8 shadow-xl shadow-pink-200/40 relative z-10" id="neracaSection">
+      <h2 class="text-lg font-bold text-[#831843] mb-6 flex items-center gap-2">
+        <i class="fa-solid fa-scale-balanced text-pink-500"></i> Neraca Saldo Periode
       </h2>
-      <div class="overflow-x-auto rounded-2xl border border-slate-200/80">
+      <div class="overflow-x-auto rounded-2xl border border-pink-200/80">
         <table class="min-w-full text-sm bg-white/50 backdrop-blur-md">
           <thead>
-            <tr class="bg-[#0b1329] text-white border-b border-slate-800 text-xs">
+            <tr class="bg-[#831843] text-white border-b border-pink-900 text-xs">
               <th class="p-3.5 text-left font-bold tracking-wide">AKUN</th>
               <th class="p-3.5 text-right font-bold tracking-wide">DEBIT</th>
               <th class="p-3.5 text-right font-bold tracking-wide">KREDIT</th>
             </tr>
           </thead>
-          <tbody id="neracaSaldo" class="divide-y divide-slate-100 font-medium text-slate-700 text-xs"></tbody>
+          <tbody id="neracaSaldo" class="divide-y divide-pink-100 font-medium text-pink-900 text-xs"></tbody>
         </table>
       </div>
     </div>
@@ -422,17 +422,17 @@
   <div id="toastContainer" class="fixed top-6 right-6 z-50 space-y-3 pointer-events-none"></div>
 
   <!-- Modal Konfirmasi Hapus -->
-  <div id="deleteModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
-    <div id="deleteModalCard" class="bg-white/90 backdrop-blur-xl border border-slate-200/80 rounded-3xl p-6 max-w-sm w-full shadow-2xl transform scale-95 transition-all duration-300 text-center space-y-4">
+  <div id="deleteModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-pink-950/30 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+    <div id="deleteModalCard" class="bg-white/95 backdrop-blur-xl border border-pink-200 rounded-3xl p-6 max-w-sm w-full shadow-2xl transform scale-95 transition-all duration-300 text-center space-y-4">
       <div class="w-12 h-12 bg-rose-50 border border-rose-100 text-rose-500 rounded-2xl flex items-center justify-center mx-auto shadow-inner text-lg">
         <i class="fa-solid fa-trash-can"></i>
       </div>
       <div>
-        <h3 class="text-base font-extrabold text-[#0b1329]">Hapus Transaksi?</h3>
-        <p class="text-xs text-slate-500 mt-1 leading-relaxed">Tindakan ini tidak dapat dibatalkan. Transaksi akan dihapus permanen dari laporan utang.</p>
+        <h3 class="text-base font-extrabold text-[#831843]">Hapus Transaksi?</h3>
+        <p class="text-xs text-pink-500 mt-1 leading-relaxed">Tindakan ini tidak dapat dibatalkan. Transaksi akan dihapus permanen dari laporan hutang.</p>
       </div>
       <div class="grid grid-cols-2 gap-3 pt-2">
-        <button onclick="closeDeleteModal()" class="btn-smooth py-2 px-4 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 font-semibold text-xs">
+        <button onclick="closeDeleteModal()" class="btn-smooth py-2 px-4 rounded-xl border border-pink-200 text-pink-700 hover:bg-pink-50 font-semibold text-xs">
           Batal
         </button>
         <button id="confirmDeleteBtn" class="btn-smooth py-2 px-4 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-semibold text-xs shadow-lg shadow-rose-600/20">
@@ -511,7 +511,7 @@
       }
     }
 
-    // Fungsi khusus memilih Pemasukan / Pengeluaran (FIXED)
+    // Fungsi khusus memilih Pemasukan / Pengeluaran
     function selectJenisOption(val, event) {
       if (event) event.stopPropagation();
 
@@ -756,14 +756,14 @@
       selectOption('wrapper-bulan', month.toString(), months[month - 1]);
       selectOption('wrapper-tahun', year.toString(), year.toString());
 
-      showToast("Transaksi utang berhasil disimpan 🔥", "success");
+      showToast("Transaksi hutang berhasil disimpan 🔥", "success");
       renderAllFiltered();
 
       // Reset Form
       document.getElementById('akun').value = '';
       nominalInputFormattedEl.value = '';
       document.getElementById('keterangan').value = '';
-      document.getElementById('formTitleText').textContent = 'Input Transaksi utang';
+      document.getElementById('formTitleText').textContent = 'Input Transaksi hutang';
       document.getElementById('btnSubmitText').textContent = 'Simpan Transaksi';
     });
 
@@ -773,7 +773,7 @@
         success: 'bg-emerald-600 text-white',
         error: 'bg-rose-600 text-white',
         warning: 'bg-amber-500 text-white',
-        info: 'bg-blue-600 text-white'
+        info: 'bg-pink-600 text-white'
       };
       const icons = {
         success: '<i class="fa-solid fa-check"></i>', 
@@ -814,7 +814,7 @@
       document.getElementById('keterangan').value = t.ket || '';
       
       // Update label form
-      document.getElementById('formTitleText').textContent = 'Edit Transaksi utang';
+      document.getElementById('formTitleText').textContent = 'Edit Transaksi hutang';
       document.getElementById('btnSubmitText').textContent = 'Perbarui Transaksi';
 
       transaksi.splice(originalIndex, 1);
@@ -880,16 +880,16 @@
       sortedAkunNames.forEach(akunName => {
         const transactionsForAkun = groupedByAkun[akunName].sort((a, b) => new Date(b.tgl) - new Date(a.tgl));
 
-        let tableHtml = `<div class="bg-white/60 rounded-2xl border border-slate-200/80 p-4 md:p-5 shadow-sm space-y-3 animate-fade-in-up">
+        let tableHtml = `<div class="bg-white/70 rounded-2xl border border-pink-200/80 p-4 md:p-5 shadow-sm space-y-3 animate-fade-in-up">
           <div class="flex items-center justify-between">
-            <h3 class="text-sm font-bold text-[#0b1329] flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-blue-600"></span> Akun: ${akunName}
+            <h3 class="text-sm font-bold text-[#831843] flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-pink-500"></span> Akun: ${akunName}
             </h3>
-            <span class="text-xs font-semibold text-slate-500 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">${transactionsForAkun.length} Transaksi</span>
+            <span class="text-xs font-semibold text-pink-600 bg-pink-100/80 px-2.5 py-0.5 rounded-full border border-pink-200">${transactionsForAkun.length} Transaksi</span>
           </div>
-          <div class="overflow-x-auto rounded-xl border border-slate-200/60">
+          <div class="overflow-x-auto rounded-xl border border-pink-200/60">
             <table class="min-w-full text-xs bg-white">
-              <thead class="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200">
+              <thead class="bg-pink-50/70 text-pink-800 font-semibold border-b border-pink-200">
                 <tr>
                   <th class="p-2.5 text-left">Tanggal</th>
                   <th class="p-2.5 text-left">Jenis</th>
@@ -898,11 +898,11 @@
                   <th class="p-2.5 text-center">Aksi</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-slate-100 font-medium text-slate-700">`;
+              <tbody class="divide-y divide-pink-100 font-medium text-pink-900">`;
         
         transactionsForAkun.forEach(t => {
-          tableHtml += `<tr class="row-smooth hover:bg-blue-50/30">
-            <td class="p-2.5 text-slate-600 font-medium">${t.tgl}</td>
+          tableHtml += `<tr class="row-smooth hover:bg-pink-50/50">
+            <td class="p-2.5 text-pink-700 font-medium">${t.tgl}</td>
             <td class="p-2.5">
               <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold ${t.jenis === 'pemasukan' ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' : 'bg-rose-50 text-rose-700 border border-rose-100'}">
                 <i class="fa-solid ${t.jenis === 'pemasukan' ? 'fa-arrow-down mr-1 text-emerald-600' : 'fa-arrow-up mr-1 text-rose-600'}"></i>
@@ -910,9 +910,9 @@
               </span>
             </td>
             <td class="p-2.5 text-right font-bold ${t.jenis === 'pemasukan' ? 'text-emerald-600' : 'text-rose-600'}">${formatRupiah(t.nominal)}</td>
-            <td class="p-2.5 text-slate-500">${t.ket || '-'}</td>
+            <td class="p-2.5 text-pink-400">${t.ket || '-'}</td>
             <td class="p-2.5 text-center space-x-1.5">
-              <button onclick="edit(${t.originalIndex})" class="btn-smooth px-2 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-600 text-[11px] font-semibold"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+              <button onclick="edit(${t.originalIndex})" class="btn-smooth px-2 py-1 rounded-lg bg-pink-100 hover:bg-pink-200 text-pink-700 text-[11px] font-semibold"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
               <button onclick="hapus(${t.originalIndex})" class="btn-smooth px-2 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 text-[11px] font-semibold"><i class="fa-solid fa-trash-can"></i> Hapus</button>
             </td>
           </tr>`;
@@ -939,8 +939,8 @@
         const val = neraca[akun];
         totalDebit += val.debit;
         totalKredit += val.kredit;
-        neracaSaldoBody.innerHTML += `<tr class="row-smooth hover:bg-slate-50/80">
-          <td class="p-3.5 font-semibold text-[#0b1329]">${akun}</td>
+        neracaSaldoBody.innerHTML += `<tr class="row-smooth hover:bg-pink-50/60">
+          <td class="p-3.5 font-semibold text-[#831843]">${akun}</td>
           <td class="p-3.5 text-right text-emerald-600 font-semibold">${formatRupiah(val.debit)}</td>
           <td class="p-3.5 text-right text-rose-600 font-semibold">${formatRupiah(val.kredit)}</td>
         </tr>`;
@@ -951,25 +951,25 @@
       const totalSelisih = saldoAkhirDariBukuBesar - currentAccountBalanceFiltered; 
 
       neracaSaldoBody.innerHTML += `
-        <tr class="bg-blue-50/70 font-bold border-t-2 border-blue-200 text-[#0b1329]">
+        <tr class="bg-pink-100/80 font-bold border-t-2 border-pink-300 text-[#831843]">
           <td class="p-3.5">TOTAL</td>
-          <td class="p-3.5 text-right text-blue-700">${formatRupiah(totalDebit)}</td>
-          <td class="p-3.5 text-right text-blue-700">${formatRupiah(totalKredit)}</td>
+          <td class="p-3.5 text-right text-pink-800">${formatRupiah(totalDebit)}</td>
+          <td class="p-3.5 text-right text-pink-800">${formatRupiah(totalKredit)}</td>
         </tr>
-        <tr class="bg-amber-50/60 font-semibold text-slate-800">
+        <tr class="bg-amber-50/60 font-semibold text-pink-900">
           <td class="p-3.5">Saldo Akhir Kumulatif</td>
           <td class="p-3.5"></td>
           <td class="p-3.5 text-right ${saldoAkhirDariBukuBesar >= 0 ? 'text-emerald-600' : 'text-rose-600'} font-bold">${formatRupiah(saldoAkhirDariBukuBesar)}</td>
         </tr>
-        <tr class="bg-slate-100/70 font-semibold text-slate-800">
+        <tr class="bg-pink-50/70 font-semibold text-pink-900">
           <td class="p-3.5">Saldo Periode Ini</td>
           <td class="p-3.5"></td>
           <td class="p-3.5 text-right ${currentAccountBalanceFiltered >= 0 ? 'text-emerald-600' : 'text-rose-600'} font-bold">${formatRupiah(currentAccountBalanceFiltered)}</td>
         </tr>
-        <tr class="bg-blue-100/60 font-semibold text-slate-800">
+        <tr class="bg-pink-100/60 font-semibold text-pink-900">
             <td class="p-3.5">Selisih Saldo</td>
             <td class="p-3.5"></td>
-            <td class="p-3.5 text-right ${Math.abs(totalSelisih) < 0.01 ? 'text-blue-600' : 'text-rose-600'} font-bold">${formatRupiah(totalSelisih)}</td>
+            <td class="p-3.5 text-right ${Math.abs(totalSelisih) < 0.01 ? 'text-pink-700' : 'text-rose-600'} font-bold">${formatRupiah(totalSelisih)}</td>
         </tr>
       `;
     }
@@ -1044,7 +1044,7 @@
                   x: { grid: { display: false }, ticks: { font: { family: 'Plus Jakarta Sans', size: 11 } } },
                   y: { 
                     beginAtZero: true, 
-                    grid: { color: '#f1f5f9' }, 
+                    grid: { color: '#fce7f3' }, 
                     ticks: { 
                       callback: (v) => isHidden ? 'Rp ***' : 'Rp ' + v.toLocaleString('id-ID'), 
                       font: { family: 'Plus Jakarta Sans', size: 10 } 
@@ -1066,7 +1066,7 @@
     async function downloadPDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
-      const rekeningName = 'utang';
+      const rekeningName = 'hutang';
       const saldoCurrentOverall = saldoRekeningEl.textContent;
       const filteredTransactions = transaksi.filter(t => 
         t.year === currentFilterYear && t.month === currentFilterMonth
@@ -1074,10 +1074,10 @@
       const currentMonthName = document.getElementById('selected-bulan').textContent;
 
       doc.setFontSize(18);
-      doc.setTextColor(11, 19, 41); 
+      doc.setTextColor(131, 24, 67); 
       doc.text(`Laporan Rekening: ${rekeningName}`, 14, 20);
       doc.setFontSize(11);
-      doc.setTextColor(100, 116, 139); 
+      doc.setTextColor(159, 18, 57); 
       doc.text(`Saldo Keseluruhan: ${saldoCurrentOverall}`, 14, 28);
       doc.text(`Periode: ${currentMonthName} ${currentFilterYear}`, 14, 34);
       doc.text(`Tanggal Cetak: ${new Date().toLocaleDateString('id-ID')}`, 14, 40);
@@ -1104,7 +1104,7 @@
           ]);
 
           doc.setFontSize(13);
-          doc.setTextColor(11, 19, 41);
+          doc.setTextColor(131, 24, 67);
           doc.text(`Akun: ${akun}`, 14, yOffset);
           yOffset += 6;
 
@@ -1113,7 +1113,7 @@
               head: [['Tanggal', 'Jenis', 'Nominal', 'Keterangan']],
               body: tableData,
               theme: 'striped',
-              headStyles: { fillColor: [37, 99, 235], textColor: [255, 255, 255] },
+              headStyles: { fillColor: [236, 72, 153], textColor: [255, 255, 255] },
               styles: { fontSize: 8, cellPadding: 2 }
           });
           yOffset = doc.autoTable.previous.finalY + 10;
